@@ -127,8 +127,8 @@ window.SITE = {
       url: "https://script.google.com/macros/s/AKfycbwQar88hJTCqlCEE1PsfTGU4mP3_cDuRvC3_VS_YvoDF0TUIlbd5ZXavFG7gxtv3i0HOg/exec/exec?theme=balanced"
     },
     {
-      name: "醫務社工個案紀錄助手",
-      desc: "將訪談筆記或口述內容整理為結構化個案紀錄，並依 4Rs 等架構協助評估與處遇計畫。",
+      name: "醫務社工個案紀錄skills",
+      desc: "將訪談筆記或口述內容整理為結構化個案紀錄。",
       status: "研究試用中",
       url: ""
     },
