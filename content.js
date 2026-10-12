@@ -147,7 +147,7 @@ window.SITE = {
 
   // ---------- 瀏覽次數 ----------
   // 到 goatcounter.com 免費註冊後，把網站代碼填進來（例如 "aiswlab"）；留 "" 就不統計
-  goatcounter: "",
+  goatcounter: "wchsiehteam",
   // true：在網站最下方顯示總瀏覽次數；false：只在後台看，網站上不顯示
   showViews: true
 
