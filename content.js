@@ -32,15 +32,15 @@ window.SITE = {
     {
       role: "PI / 計畫主持人",
       name: "謝文中",
-      title: "副教授，東吳大學 社會工作學系",
+      title: "東吳大學社會工作學系副教授",
       bio: "醫務社會工作、科技、AI與社會工作、災難社會工作、量表建構與發展",
       photo: "",
-      link: ""
+      link: "cbm523@gmail.com"
     },
     {
       role: "RA / 研究助理",
       name: "黃昱幃",
-      title: "陽明交通大學衛生福利研究所",
+      title: "國立陽明交通大學衛生福利研究所",
       bio: "[一句簡介]",
       photo: "",
       link: ""
