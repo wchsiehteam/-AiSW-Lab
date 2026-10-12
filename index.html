@@ -55,12 +55,16 @@
 
   .about p { margin: 0; max-width: 860px; font-size: 19px; font-weight: 500; line-height: 1.85; }
 
-  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-  .member { display: flex; flex-direction: column; }
-  .member .photo { aspect-ratio: 4 / 3; background: var(--photo); border-bottom: 3px solid var(--ink);
+  .team { display: flex; flex-direction: column; gap: 20px; }
+  .team-ra { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px; }
+  .member { display: flex; flex-wrap: wrap; }
+  .member .photo { flex: 0 0 150px; aspect-ratio: 4 / 5; background: var(--photo); border-right: 3px solid var(--ink);
     display: flex; align-items: center; justify-content: center; color: #555; font-size: 14px; overflow: hidden; }
+  .member.lead .photo { flex-basis: 240px; }
   .member .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; display: block; }
-  .member .body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 4px; }
+  .member .body { flex: 1 1 220px; min-width: 0; padding: 18px 22px 20px; display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+  .member.lead h3 { font-size: 30px; }
+  .member.lead .bio { font-size: 16px; }
   .member .role { font-size: 13px; color: var(--accent-text); }
   .member h3 { margin: 0; font-size: 24px; font-weight: 900; }
   .member .title { font-size: 15px; color: var(--muted); }
@@ -106,6 +110,8 @@
     flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; }
 
   @media (max-width: 600px) {
+    .member.lead .photo { flex-basis: 100%; aspect-ratio: 4 / 3; border-right: 0; border-bottom: 3px solid var(--ink); }
+    .member .photo { flex-basis: 110px; }
     .sec-head .num { font-size: 48px; }
     .sec-head h2 { font-size: 26px; }
     nav a { flex: 1 1 auto; text-align: center; padding: 12px 14px; }
@@ -203,14 +209,20 @@
   $('affil-foot').textContent = S.affiliation || '';
   $('year').textContent = new Date().getFullYear();
 
-  $('members').innerHTML = (S.members || []).map(function (m) {
+  function memberCard(m, lead) {
     var photo = m.photo ? '<img src="' + esc(m.photo) + '" alt="' + esc(m.name) + '">' : '[照片]';
     var name = isUrl(m.link) ? '<a href="' + esc(m.link) + '">' + esc(m.name) + '</a>' : esc(m.name);
-    return '<article class="member box"><div class="photo">' + photo + '</div><div class="body">' +
+    return '<article class="member box' + (lead ? ' lead' : '') + '"><div class="photo">' + photo + '</div><div class="body">' +
       '<span class="role mono">' + esc(m.role) + '</span><h3>' + name + '</h3>' +
       '<span class="title">' + esc(m.title) + '</span>' +
       (m.bio ? '<p class="bio">' + esc(m.bio) + '</p>' : '') + '</div></article>';
-  }).join('');
+  }
+  // role 以 PI 開頭的放最上面一整排，其他成員排在下面
+  var members = S.members || [];
+  var leads = members.filter(function (m) { return /^PI/i.test(m.role || ''); });
+  var others = members.filter(function (m) { return !/^PI/i.test(m.role || ''); });
+  $('members').innerHTML = leads.map(function (m) { return memberCard(m, true); }).join('') +
+    (others.length ? '<div class="team-ra">' + others.map(function (m) { return memberCard(m, false); }).join('') + '</div>' : '');
 
   var SHOW = 5;
   function pubItem(t) {
@@ -278,5 +290,7 @@
   mark();
 })();
 </script>
+</body>
+</html>
 </body>
 </html>
