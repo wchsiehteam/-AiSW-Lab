@@ -3,7 +3,7 @@
 東吳大學謝文中老師研究室（AiSW Lab）的官方網站。
 
 - 網站網址：https://wchsiehteam.github.io/-AiSW-Lab/
-- 架設方式：GitHub Pages（免費，存檔後約 1 分鐘自動更新）
+- 架設方式：GitHub Pages（免費，存檔後約五分鐘自動更新）
 
 ## 檔案說明
 
