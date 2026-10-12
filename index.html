@@ -19,6 +19,7 @@
     --photo: #DCD8D0;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   body { margin: 0; background: var(--bg); color: var(--ink);
     font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
     font-size: 16px; line-height: 1.7; }
@@ -95,18 +96,11 @@
     padding: 12px 20px; display: inline-flex; align-items: center; min-height: 44px; }
   .tag { border: 3px solid var(--ink); font-weight: 900; padding: 9px 16px; font-size: 15px; }
 
-  .contact { display: flex; flex-wrap: wrap; border: 3px solid var(--ink); }
-  .contact .left { flex: 1 1 520px; background: var(--accent); color: #fff; padding: 32px 28px;
-    display: flex; flex-direction: column; gap: 16px; }
-  .contact .left .big { margin: 0; font-size: clamp(24px, 3vw, 34px); font-weight: 900; line-height: 1.35; white-space: pre-line; }
-  .contact .left p { margin: 0; }
-  .contact .right { flex: 1 1 340px; background: var(--card); padding: 28px; display: flex;
-    flex-direction: column; gap: 16px; justify-content: center; }
-  .contact .label { font-size: 13px; display: block; }
-  .btn-shadow { align-self: flex-start; text-decoration: none; background: #fff; color: var(--ink);
-    font-weight: 900; padding: 12px 22px; border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink);
-    display: inline-flex; align-items: center; min-height: 44px; }
-  .btn-shadow:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+  .contact > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 18px 20px;
+    border-top: 2px solid var(--ink); }
+  .contact > div:first-child { border-top: 0; }
+  .contact .label { flex: 0 0 160px; font-size: 13px; }
+  .contact .value { font-size: 20px; font-weight: 700; }
 
   footer { margin-top: 64px; padding-top: 12px; border-top: 4px solid var(--ink); display: flex;
     flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; }
@@ -169,17 +163,10 @@
 
     <section id="contact">
       <div class="sec-head"><span class="num display">05</span><h2>聯絡我們</h2></div>
-      <div class="contact">
-        <div class="left">
-          <p class="big" id="contact-title"></p>
-          <p id="contact-text"></p>
-        </div>
-        <div class="right">
-          <div><span class="label mono">EMAIL</span><strong id="email"></strong></div>
-          <div id="phone-row"><span class="label mono">PHONE / 電話</span><a id="phone"></a></div>
-          <div id="partners"><span class="label mono">PARTNERS / 合作醫院</span><span id="hospitals"></span></div>
-          <a class="btn-shadow" id="mail-btn">寫信給我們 ↘</a>
-        </div>
+      <div class="contact box">
+        <div><span class="label mono">EMAIL</span><a class="value" id="email"></a></div>
+        <div id="phone-row"><span class="label mono">PHONE / 電話</span><a class="value" id="phone"></a></div>
+        <div id="partners"><span class="label mono">PARTNERS / 合作醫院</span><span class="value" id="hospitals"></span></div>
       </div>
     </section>
   </main>
@@ -204,7 +191,7 @@
 
   $('email-top').textContent = S.email || '';
   $('email').textContent = S.email || '';
-  if (S.email && S.email.indexOf('@') > 0) { $('mail-btn').href = 'mailto:' + S.email; }
+  if (S.email && S.email.indexOf('@') > 0) { $('email').href = 'mailto:' + S.email; }
   if (S.phone) {
     $('phone').textContent = S.phone;
     $('phone').href = 'tel:+886' + S.phone.split(/分機|ext|#/i)[0].replace(/\D/g, '').replace(/^0/, '') +
@@ -254,8 +241,6 @@
       action + '</div></div>';
   }).join('');
 
-  $('contact-title').textContent = S.contactTitle || '';
-  $('contact-text').textContent = S.contactText || '';
   if (S.hospitals && S.hospitals.length) {
     $('hospitals').textContent = S.hospitals.join('、');
   } else {
