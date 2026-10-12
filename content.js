@@ -142,8 +142,8 @@ window.SITE = {
 
   // ---------- 05 聯絡我們 ----------
   // hospitals 留空 [] 的話，「合作醫院」這一欄就不會顯示
-  contactTitle: "歡迎醫院社工室\n一起試用與研究。",
-  contactText: "我們可以到院說明、協助導入，並與社工一起檢視成效。",
+  contactTitle: "",
+  contactText: "",
   hospitals: [],
 
   // ---------- 瀏覽次數 ----------
