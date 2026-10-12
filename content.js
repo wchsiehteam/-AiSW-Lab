@@ -142,8 +142,6 @@ window.SITE = {
 
   // ---------- 05 聯絡我們 ----------
   // hospitals 留空 [] 的話，「合作醫院」這一欄就不會顯示
-  contactTitle: "",
-  contactText: "",
   hospitals: [],
 
   // ---------- 瀏覽次數 ----------
