@@ -41,8 +41,9 @@
   .mast p { margin: 0; font-size: 17px; color: var(--muted); max-width: 520px; }
 
   nav { display: flex; flex-wrap: wrap; background: var(--ink); margin-top: 24px; }
-  nav a { color: #fff; text-decoration: none; font-weight: 900; padding: 14px 24px;
-    border-right: 3px solid var(--bg); }
+  nav a { flex: 1 1 0; display: flex; align-items: baseline; justify-content: center; gap: 10px;
+    color: #fff; text-decoration: none; font-weight: 900; font-size: 17px; padding: 16px 12px;
+    border-right: 3px solid var(--bg); transition: background .15s; white-space: nowrap; }
   nav a:last-child { border-right: 0; }
   nav a:hover, nav a.on { background: var(--accent); color: #fff; }
 
@@ -53,7 +54,7 @@
 
   .box { border: 3px solid var(--ink); background: var(--card); }
 
-  .about p { margin: 0; max-width: 860px; font-size: 19px; font-weight: 500; line-height: 1.85; }
+  .about p { margin: 0; font-size: 19px; font-weight: 500; line-height: 1.85; white-space: pre-line; }
 
   .team { display: flex; flex-direction: column; gap: 20px; }
   .team-ra { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px; }
@@ -78,16 +79,18 @@
   .pub-group ol { list-style: none; margin: 0; padding: 0; }
   .pub-group li { padding: 14px 20px 14px calc(20px + 2em); text-indent: -2em; border-top: 2px solid var(--ink); font-size: 15px; }
   .pub-group ol li:first-child { border-top: 0; }
-  .pub-group details { border-top: 2px solid var(--ink); }
-  .pub-group summary { cursor: pointer; padding: 12px 20px; font-weight: 700; min-height: 44px; box-sizing: border-box; }
-  .pub-group summary:hover { color: var(--accent-text); }
-  .pub-group details ol { border-top: 2px solid var(--ink); }
+  .pub-group .more-btn { display: block; width: 100%; text-align: left; background: none; border: 0;
+    border-top: 2px solid var(--ink); cursor: pointer; padding: 12px 20px; min-height: 44px;
+    font: inherit; font-weight: 700; color: var(--ink); }
+  .pub-group .more-btn:hover { background: var(--ink); color: #fff; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .pub-group li.shown { animation: fadein .35s ease-out both; }
   .more { align-self: flex-start; font-weight: 700; padding: 10px 0; }
 
   .products { border: 3px solid var(--ink); }
-  .product { display: flex; background: var(--card); border-top: 3px solid var(--ink); }
+  .product { display: flex; background: var(--card); border-top: 3px solid var(--ink); transition: background .15s, color .15s; }
   .product:first-child { border-top: 0; }
-  .product.open { background: var(--accent); color: #fff; }
+  .product:hover { background: var(--accent); color: #fff; }
   .product .letter { flex: 0 0 88px; display: flex; align-items: center; justify-content: center;
     border-right: 3px solid var(--ink); font-size: 44px; }
   .product .main { flex: 1 1 auto; min-width: 0; padding: 18px 22px; display: flex; flex-wrap: wrap;
@@ -95,7 +98,8 @@
   .product .info { flex: 1 1 380px; display: flex; flex-direction: column; gap: 4px; }
   .product h3 { margin: 0; font-size: 22px; font-weight: 900; }
   .product p { margin: 0; font-size: 15px; color: var(--muted); }
-  .product.open p { color: #fff; }
+  .product p { transition: color .15s; }
+  .product:hover p { color: #fff; }
   .btn-dark { text-decoration: none; background: var(--ink); color: #fff !important; font-weight: 900;
     padding: 12px 20px; display: inline-flex; align-items: center; min-height: 44px; }
   .tag { border: 3px solid var(--ink); font-weight: 900; padding: 9px 16px; font-size: 15px; }
@@ -109,12 +113,37 @@
   footer { margin-top: 64px; padding-top: 12px; border-top: 4px solid var(--ink); display: flex;
     flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; }
 
+  /* ---------- 動畫 ---------- */
+  @keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  .mast .logo { animation: wipe .8s cubic-bezier(.7, 0, .2, 1) both; }
+  .mast .intro { animation: rise .6s .45s ease-out both; }
+  nav { animation: rise .5s .7s ease-out both; }
+
+  .reveal, .member.reveal, .pub-group.reveal { opacity: 0; transform: translateY(28px); box-shadow: none;
+    transition: opacity .6s ease-out, transform .6s ease-out; }
+  .reveal.in, .member.reveal.in, .pub-group.reveal.in { opacity: 1; transform: none; }
+  .sec-head.reveal .num { display: inline-block; transform: translateX(-24px); transition: transform .6s .1s ease-out; }
+  .sec-head.reveal.in .num { transform: none; }
+
+  .member, .pub-group, .btn-dark { transition: transform .15s ease-out, box-shadow .15s ease-out; }
+  .member:hover, .pub-group:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--ink); }
+  .btn-dark:hover { transform: translate(-3px, -3px); box-shadow: 4px 4px 0 #fff; }
+  .product .letter { transition: background .15s, color .15s; }
+  .member .photo img { transition: transform .4s ease-out; }
+  .member:hover .photo img { transform: scale(1.04); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
   @media (max-width: 600px) {
     .member.lead .photo { flex-basis: 100%; aspect-ratio: 4 / 3; border-right: 0; border-bottom: 3px solid var(--ink); }
     .member .photo { flex-basis: 110px; }
     .sec-head .num { font-size: 48px; }
     .sec-head h2 { font-size: 26px; }
-    nav a { flex: 1 1 auto; text-align: center; padding: 12px 14px; }
+    nav a { flex: 1 1 30%; padding: 12px 8px; font-size: 15px; border-bottom: 3px solid var(--bg); }
     .product .letter { flex-basis: 56px; font-size: 32px; }
   }
 </style>
@@ -225,21 +254,32 @@
     (others.length ? '<div class="team-ra">' + others.map(function (m) { return memberCard(m, false); }).join('') + '</div>' : '');
 
   var SHOW = 5;
-  function pubItem(t) {
-    return '<li>' + esc(t).replace(/謝文中|Hsieh, W\. C\./g, '<strong>$&</strong>') + '</li>';
+  function pubItem(t, extra) {
+    return '<li' + (extra ? ' hidden' : '') + '>' +
+      esc(t).replace(/謝文中|Hsieh, W\. C\./g, '<strong>$&</strong>') + '</li>';
   }
   $('pubs').innerHTML = (S.research || []).filter(function (g) {
     return g.items && g.items.length;
   }).map(function (g) {
-    var first = g.items.slice(0, SHOW).map(pubItem).join('');
-    var rest = g.items.slice(SHOW);
-    var more = rest.length
-      ? '<details><summary>顯示其餘 ' + rest.length + ' 筆</summary><ol>' + rest.map(pubItem).join('') + '</ol></details>'
-      : '';
+    var items = g.items.map(function (t, i) { return pubItem(t, i >= SHOW); }).join('');
+    var rest = g.items.length - SHOW;
+    var more = rest > 0 ? '<button type="button" class="more-btn">顯示其餘 ' + rest + ' 筆 ↓</button>' : '';
     return '<div class="pub-group box"><div class="head"><h3>' + esc(g.group) + '</h3>' +
       '<span class="mono">' + esc(g.en) + ' · ' + g.items.length + '</span></div>' +
-      '<ol>' + first + '</ol>' + more + '</div>';
+      '<ol>' + items + '</ol>' + more + '</div>';
   }).join('');
+  // 點「顯示其餘」後展開全部，按鈕本身消失
+  $('pubs').addEventListener('click', function (e) {
+    var btn = e.target.closest('.more-btn');
+    if (!btn) return;
+    var group = btn.parentElement;
+    group.querySelectorAll('li[hidden]').forEach(function (li, i) {
+      li.hidden = false;
+      li.classList.add('shown');
+      li.style.animationDelay = Math.min(i, 8) * 0.03 + 's';
+    });
+    btn.remove();
+  });
   if (isUrl(S.publicationsLink)) { $('pubs-link').href = S.publicationsLink; $('pubs-link').hidden = false; }
 
   var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -277,10 +317,31 @@
     }
   }
 
+  // 捲動時依序浮現
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var targets = document.querySelectorAll('.sec-head, .about p, .member, .pub-group, .product, .contact');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.classList.add('in');
+        io.unobserve(el);
+        // 浮現完成後移除動畫設定，讓滑鼠移上去的效果即時反應
+        setTimeout(function () { el.classList.remove('reveal', 'in'); el.style.transitionDelay = ''; }, 1100);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(function (el) {
+      var sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.transitionDelay = Math.min(sib, 4) * 0.08 + 's';
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  }
+
   // 選單：捲到哪一區就標紅
   var links = document.querySelectorAll('nav a');
   function mark() {
-    var cur = 'about';
+    var cur = '';
     document.querySelectorAll('main section').forEach(function (s) {
       if (s.getBoundingClientRect().top < 160) cur = s.id;
     });
@@ -290,7 +351,5 @@
   mark();
 })();
 </script>
-</body>
-</html>
 </body>
 </html>
