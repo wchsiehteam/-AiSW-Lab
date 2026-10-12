@@ -34,11 +34,10 @@
 
   .mast { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px 48px;
     padding: 36px 0 32px; border-bottom: 4px solid var(--ink); }
-  .mast .logo { font-size: clamp(64px, 10vw, 128px); line-height: .92; letter-spacing: -1px; }
+  .mast .logo { font-size: clamp(56px, 9vw, 112px); line-height: .92; letter-spacing: -1px; white-space: nowrap; }
   .mast .intro { flex: 1 1 380px; display: flex; flex-direction: column; gap: 10px; padding-bottom: 6px; }
   .mast h1 { margin: 0; font-size: clamp(28px, 3.6vw, 44px); font-weight: 900; line-height: 1.25; }
   .mast p { margin: 0; font-size: 17px; color: var(--muted); max-width: 520px; }
-  .mast .slogan { font-size: clamp(28px, 3vw, 40px); font-weight: 900; padding-bottom: 6px; }
 
   nav { display: flex; flex-wrap: wrap; background: var(--ink); margin-top: 24px; }
   nav a { color: #fff; text-decoration: none; font-weight: 900; padding: 14px 24px;
@@ -53,12 +52,7 @@
 
   .box { border: 3px solid var(--ink); background: var(--card); }
 
-  .about { display: flex; flex-wrap: wrap; gap: 24px; }
-  .about p { flex: 1 1 520px; margin: 0; font-size: 19px; font-weight: 500; line-height: 1.85; }
-  .principles { flex: 1 1 340px; display: flex; flex-direction: column; }
-  .principles .head { background: var(--ink); color: #fff; font-weight: 700; font-size: 15px; padding: 10px 16px; }
-  .principles div:not(.head) { padding: 12px 16px; font-weight: 700; border-top: 2px solid var(--ink); }
-  .principles .head + div { border-top: 0; }
+  .about p { margin: 0; max-width: 860px; font-size: 19px; font-weight: 500; line-height: 1.85; }
 
   .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
   .member { display: flex; flex-direction: column; }
@@ -134,12 +128,11 @@
   </div>
 
   <header class="mast">
-    <div class="logo display">AiSW<br>LAB</div>
+    <div class="logo display">AiSW LAB</div>
     <div class="intro">
       <h1>醫務社工<span class="red">×人工智慧</span></h1>
       <p>東吳大學謝文中老師研究室。研究生成式 AI 如何協助醫務社工撰寫紀錄、處理行政與查詢福利資源。</p>
     </div>
-    <div class="slogan">研究<span class="red">、</span>試用<span class="red">、</span>推廣<span class="red">。</span></div>
   </header>
 
   <nav aria-label="主選單">
@@ -155,7 +148,6 @@
       <div class="sec-head"><span class="num display">01</span><h2>關於我們</h2></div>
       <div class="about">
         <p id="about-text"></p>
-        <div class="principles box" id="principles"><div class="head">我們的原則</div></div>
       </div>
     </section>
 
@@ -184,6 +176,7 @@
         </div>
         <div class="right">
           <div><span class="label mono">EMAIL</span><strong id="email"></strong></div>
+          <div id="phone-row"><span class="label mono">PHONE / 電話</span><a id="phone"></a></div>
           <div id="partners"><span class="label mono">PARTNERS / 合作醫院</span><span id="hospitals"></span></div>
           <a class="btn-shadow" id="mail-btn">寫信給我們 ↘</a>
         </div>
@@ -192,7 +185,7 @@
   </main>
 
   <footer class="mono">
-    <span>© <span id="year"></span> AiSW Lab@SCU</span>
+    <span>© <span id="year"></span> AiSW Lab@SCU<span id="views" hidden> · 瀏覽 <span id="views-n"></span> 次</span></span>
     <span id="affil-foot"></span>
   </footer>
 </div>
@@ -212,13 +205,16 @@
   $('email-top').textContent = S.email || '';
   $('email').textContent = S.email || '';
   if (S.email && S.email.indexOf('@') > 0) { $('mail-btn').href = 'mailto:' + S.email; }
+  if (S.phone) {
+    $('phone').textContent = S.phone;
+    $('phone').href = 'tel:+886' + S.phone.split(/分機|ext|#/i)[0].replace(/\D/g, '').replace(/^0/, '') +
+      (/(分機|ext|#)\s*(\d+)/i.test(S.phone) ? ',' + S.phone.match(/(分機|ext|#)\s*(\d+)/i)[2] : '');
+  } else {
+    $('phone-row').hidden = true;
+  }
   $('about-text').textContent = S.about || '';
   $('affil-foot').textContent = S.affiliation || '';
   $('year').textContent = new Date().getFullYear();
-
-  (S.principles || []).forEach(function (t) {
-    var d = document.createElement('div'); d.textContent = t; $('principles').appendChild(d);
-  });
 
   $('members').innerHTML = (S.members || []).map(function (m) {
     var photo = m.photo ? '<img src="' + esc(m.photo) + '" alt="' + esc(m.name) + '">' : '[照片]';
@@ -264,6 +260,24 @@
     $('hospitals').textContent = S.hospitals.join('、');
   } else {
     $('partners').hidden = true;
+  }
+
+  // 瀏覽次數（GoatCounter）
+  var gc = (S.goatcounter || '').trim();
+  if (/^[a-z0-9-]+$/.test(gc)) {
+    var base = 'https://' + gc + '.goatcounter.com';
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://gc.zgo.at/count.js';
+    s.setAttribute('data-goatcounter', base + '/count');
+    document.body.appendChild(s);
+    if (S.showViews && window.fetch) {
+      fetch(base + '/counter/TOTAL.json').then(function (r) {
+        return r.ok ? r.json() : null;
+      }).then(function (d) {
+        if (d && d.count) { $('views-n').textContent = d.count; $('views').hidden = false; }
+      }).catch(function () {});
+    }
   }
 
   // 選單：捲到哪一區就標紅
