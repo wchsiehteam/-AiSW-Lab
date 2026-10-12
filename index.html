@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AiSW Lab｜東吳大學醫務社工 × 人工智慧研究室</title>
+<meta name="description" content="AiSW Lab 是東吳大學謝文中老師主持的研究室，研究生成式 AI 如何協助醫務社工撰寫紀錄、處理行政與查詢福利資源。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+  :root {
+    --bg: #F0EEE9;
+    --ink: #111111;
+    --muted: #3A3A3A;
+    --accent: #C9472F;
+    --accent-text: #A8361F;
+    --card: #FFFFFF;
+    --photo: #DCD8D0;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    font-size: 16px; line-height: 1.7; }
+  a { color: var(--ink); }
+  a:hover { color: var(--accent-text); }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 32px 24px 64px; }
+  .mono { font-family: 'Space Mono', monospace; font-weight: 700; }
+  .display { font-family: 'Anton', 'Noto Sans TC', sans-serif; }
+  .red { color: var(--accent); }
+
+  .topline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+    padding-bottom: 12px; border-bottom: 4px solid var(--ink); font-size: 14px; }
+
+  .mast { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px 48px;
+    padding: 36px 0 32px; border-bottom: 4px solid var(--ink); }
+  .mast .logo { font-size: clamp(64px, 10vw, 128px); line-height: .92; letter-spacing: -1px; }
+  .mast .intro { flex: 1 1 380px; display: flex; flex-direction: column; gap: 10px; padding-bottom: 6px; }
+  .mast h1 { margin: 0; font-size: clamp(28px, 3.6vw, 44px); font-weight: 900; line-height: 1.25; }
+  .mast p { margin: 0; font-size: 17px; color: var(--muted); max-width: 520px; }
+  .mast .slogan { font-size: clamp(28px, 3vw, 40px); font-weight: 900; padding-bottom: 6px; }
+
+  nav { display: flex; flex-wrap: wrap; background: var(--ink); margin-top: 24px; }
+  nav a { color: #fff; text-decoration: none; font-weight: 900; padding: 14px 24px;
+    border-right: 3px solid var(--bg); }
+  nav a:last-child { border-right: 0; }
+  nav a:hover, nav a.on { background: var(--accent); color: #fff; }
+
+  section { margin-top: 72px; display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 16px; }
+  .sec-head { display: flex; align-items: flex-end; gap: 20px; border-bottom: 4px solid var(--ink); padding-bottom: 10px; }
+  .sec-head .num { font-size: 64px; line-height: .9; }
+  .sec-head h2 { margin: 0; font-size: 32px; font-weight: 900; line-height: 1.2; }
+
+  .box { border: 3px solid var(--ink); background: var(--card); }
+
+  .about { display: flex; flex-wrap: wrap; gap: 24px; }
+  .about p { flex: 1 1 520px; margin: 0; font-size: 19px; font-weight: 500; line-height: 1.85; }
+  .principles { flex: 1 1 340px; display: flex; flex-direction: column; }
+  .principles .head { background: var(--ink); color: #fff; font-weight: 700; font-size: 15px; padding: 10px 16px; }
+  .principles div:not(.head) { padding: 12px 16px; font-weight: 700; border-top: 2px solid var(--ink); }
+  .principles .head + div { border-top: 0; }
+
+  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .member { display: flex; flex-direction: column; }
+  .member .photo { aspect-ratio: 4 / 3; background: var(--photo); border-bottom: 3px solid var(--ink);
+    display: flex; align-items: center; justify-content: center; color: #555; font-size: 14px; overflow: hidden; }
+  .member .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .member .body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 4px; }
+  .member .role { font-size: 13px; color: var(--accent-text); }
+  .member h3 { margin: 0; font-size: 24px; font-weight: 900; }
+  .member .title { font-size: 15px; color: var(--muted); }
+  .member .bio { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
+
+  .pubs { display: flex; flex-direction: column; gap: 24px; }
+  .pub-group .head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px;
+    background: var(--ink); color: #fff; padding: 10px 20px; }
+  .pub-group .head h3 { margin: 0; font-size: 18px; font-weight: 900; }
+  .pub-group .head span { font-size: 13px; }
+  .pub-group ol { list-style: none; margin: 0; padding: 0; }
+  .pub-group li { padding: 14px 20px 14px calc(20px + 2em); text-indent: -2em; border-top: 2px solid var(--ink); font-size: 15px; }
+  .pub-group ol li:first-child { border-top: 0; }
+  .pub-group details { border-top: 2px solid var(--ink); }
+  .pub-group summary { cursor: pointer; padding: 12px 20px; font-weight: 700; min-height: 44px; box-sizing: border-box; }
+  .pub-group summary:hover { color: var(--accent-text); }
+  .pub-group details ol { border-top: 2px solid var(--ink); }
+  .more { align-self: flex-start; font-weight: 700; padding: 10px 0; }
+
+  .products { border: 3px solid var(--ink); }
+  .product { display: flex; background: var(--card); border-top: 3px solid var(--ink); }
+  .product:first-child { border-top: 0; }
+  .product.open { background: var(--accent); color: #fff; }
+  .product .letter { flex: 0 0 88px; display: flex; align-items: center; justify-content: center;
+    border-right: 3px solid var(--ink); font-size: 44px; }
+  .product .main { flex: 1 1 auto; min-width: 0; padding: 18px 22px; display: flex; flex-wrap: wrap;
+    align-items: center; gap: 12px 24px; }
+  .product .info { flex: 1 1 380px; display: flex; flex-direction: column; gap: 4px; }
+  .product h3 { margin: 0; font-size: 22px; font-weight: 900; }
+  .product p { margin: 0; font-size: 15px; color: var(--muted); }
+  .product.open p { color: #fff; }
+  .btn-dark { text-decoration: none; background: var(--ink); color: #fff !important; font-weight: 900;
+    padding: 12px 20px; display: inline-flex; align-items: center; min-height: 44px; }
+  .tag { border: 3px solid var(--ink); font-weight: 900; padding: 9px 16px; font-size: 15px; }
+
+  .contact { display: flex; flex-wrap: wrap; border: 3px solid var(--ink); }
+  .contact .left { flex: 1 1 520px; background: var(--accent); color: #fff; padding: 32px 28px;
+    display: flex; flex-direction: column; gap: 16px; }
+  .contact .left .big { margin: 0; font-size: clamp(24px, 3vw, 34px); font-weight: 900; line-height: 1.35; white-space: pre-line; }
+  .contact .left p { margin: 0; }
+  .contact .right { flex: 1 1 340px; background: var(--card); padding: 28px; display: flex;
+    flex-direction: column; gap: 16px; justify-content: center; }
+  .contact .label { font-size: 13px; display: block; }
+  .btn-shadow { align-self: flex-start; text-decoration: none; background: #fff; color: var(--ink);
+    font-weight: 900; padding: 12px 22px; border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink);
+    display: inline-flex; align-items: center; min-height: 44px; }
+  .btn-shadow:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+
+  footer { margin-top: 64px; padding-top: 12px; border-top: 4px solid var(--ink); display: flex;
+    flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; }
+
+  @media (max-width: 600px) {
+    .sec-head .num { font-size: 48px; }
+    .sec-head h2 { font-size: 26px; }
+    nav a { flex: 1 1 auto; text-align: center; padding: 12px 14px; }
+    .product .letter { flex-basis: 56px; font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topline mono">
+    <span>AiSW Lab@SCU (東吳大學)</span>
+    <span id="email-top"></span>
+  </div>
+
+  <header class="mast">
+    <div class="logo display">AiSW<br>LAB</div>
+    <div class="intro">
+      <h1>醫務社工<span class="red">×人工智慧</span></h1>
+      <p>東吳大學謝文中老師研究室。研究生成式 AI 如何協助醫務社工撰寫紀錄、處理行政與查詢福利資源。</p>
+    </div>
+    <div class="slogan">研究<span class="red">、</span>試用<span class="red">、</span>推廣<span class="red">。</span></div>
+  </header>
+
+  <nav aria-label="主選單">
+    <a href="#about">關於我們</a>
+    <a href="#team">成員介紹</a>
+    <a href="#research">研究發表</a>
+    <a href="#products">我們的產品</a>
+    <a href="#contact">聯絡我們</a>
+  </nav>
+
+  <main>
+    <section id="about">
+      <div class="sec-head"><span class="num display">01</span><h2>關於我們</h2></div>
+      <div class="about">
+        <p id="about-text"></p>
+        <div class="principles box" id="principles"><div class="head">我們的原則</div></div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="sec-head"><span class="num display">02</span><h2>成員介紹</h2></div>
+      <div class="team" id="members"></div>
+    </section>
+
+    <section id="research">
+      <div class="sec-head"><span class="num display">03</span><h2>研究發表</h2></div>
+      <div class="pubs" id="pubs"></div>
+      <a class="more" id="pubs-link" hidden>完整著作清單（系網個人頁）→</a>
+    </section>
+
+    <section id="products">
+      <div class="sec-head"><span class="num display">04</span><h2>我們的產品</h2></div>
+      <div class="products" id="product-list"></div>
+    </section>
+
+    <section id="contact">
+      <div class="sec-head"><span class="num display">05</span><h2>聯絡我們</h2></div>
+      <div class="contact">
+        <div class="left">
+          <p class="big" id="contact-title"></p>
+          <p id="contact-text"></p>
+        </div>
+        <div class="right">
+          <div><span class="label mono">EMAIL</span><strong id="email"></strong></div>
+          <div id="partners"><span class="label mono">PARTNERS / 合作醫院</span><span id="hospitals"></span></div>
+          <a class="btn-shadow" id="mail-btn">寫信給我們 ↘</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mono">
+    <span>© <span id="year"></span> AiSW Lab@SCU</span>
+    <span id="affil-foot"></span>
+  </footer>
+</div>
+
+<script src="content.js"></script>
+<script>
+(function () {
+  var S = window.SITE || {};
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function $(id) { return document.getElementById(id); }
+  function isUrl(u) { return /^https?:\/\//.test(u || ''); }
+
+  $('email-top').textContent = S.email || '';
+  $('email').textContent = S.email || '';
+  if (S.email && S.email.indexOf('@') > 0) { $('mail-btn').href = 'mailto:' + S.email; }
+  $('about-text').textContent = S.about || '';
+  $('affil-foot').textContent = S.affiliation || '';
+  $('year').textContent = new Date().getFullYear();
+
+  (S.principles || []).forEach(function (t) {
+    var d = document.createElement('div'); d.textContent = t; $('principles').appendChild(d);
+  });
+
+  $('members').innerHTML = (S.members || []).map(function (m) {
+    var photo = m.photo ? '<img src="' + esc(m.photo) + '" alt="' + esc(m.name) + '">' : '[照片]';
+    var name = isUrl(m.link) ? '<a href="' + esc(m.link) + '">' + esc(m.name) + '</a>' : esc(m.name);
+    return '<article class="member box"><div class="photo">' + photo + '</div><div class="body">' +
+      '<span class="role mono">' + esc(m.role) + '</span><h3>' + name + '</h3>' +
+      '<span class="title">' + esc(m.title) + '</span>' +
+      (m.bio ? '<p class="bio">' + esc(m.bio) + '</p>' : '') + '</div></article>';
+  }).join('');
+
+  var SHOW = 5;
+  function pubItem(t) {
+    return '<li>' + esc(t).replace(/謝文中|Hsieh, W\. C\./g, '<strong>$&</strong>') + '</li>';
+  }
+  $('pubs').innerHTML = (S.research || []).filter(function (g) {
+    return g.items && g.items.length;
+  }).map(function (g) {
+    var first = g.items.slice(0, SHOW).map(pubItem).join('');
+    var rest = g.items.slice(SHOW);
+    var more = rest.length
+      ? '<details><summary>顯示其餘 ' + rest.length + ' 筆</summary><ol>' + rest.map(pubItem).join('') + '</ol></details>'
+      : '';
+    return '<div class="pub-group box"><div class="head"><h3>' + esc(g.group) + '</h3>' +
+      '<span class="mono">' + esc(g.en) + ' · ' + g.items.length + '</span></div>' +
+      '<ol>' + first + '</ol>' + more + '</div>';
+  }).join('');
+  if (isUrl(S.publicationsLink)) { $('pubs-link').href = S.publicationsLink; $('pubs-link').hidden = false; }
+
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $('product-list').innerHTML = (S.products || []).map(function (p, i) {
+    var open = p.status === '開放使用';
+    var action = open && isUrl(p.url)
+      ? '<a class="btn-dark" href="' + esc(p.url) + '" target="_blank" rel="noopener">開放使用 · 開啟 ↘</a>'
+      : '<span class="tag">' + esc(p.status) + '</span>';
+    return '<div class="product' + (open ? ' open' : '') + '"><div class="letter display">' + letters[i % 26] + '</div>' +
+      '<div class="main"><div class="info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.desc) + '</p></div>' +
+      action + '</div></div>';
+  }).join('');
+
+  $('contact-title').textContent = S.contactTitle || '';
+  $('contact-text').textContent = S.contactText || '';
+  if (S.hospitals && S.hospitals.length) {
+    $('hospitals').textContent = S.hospitals.join('、');
+  } else {
+    $('partners').hidden = true;
+  }
+
+  // 選單：捲到哪一區就標紅
+  var links = document.querySelectorAll('nav a');
+  function mark() {
+    var cur = 'about';
+    document.querySelectorAll('main section').forEach(function (s) {
+      if (s.getBoundingClientRect().top < 160) cur = s.id;
+    });
+    links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + cur); });
+  }
+  window.addEventListener('scroll', mark, { passive: true });
+  mark();
+})();
+</script>
+</body>
+</html>
