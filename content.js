@@ -42,7 +42,7 @@ window.SITE = {
       title: "國立陽明交通大學衛生福利研究所 碩士生",
       bio: "",
       photo: "",
-      link: ""
+      link: "https://youtu.be/QDia3e12czc?si=ZzOkBFcwCqb4da9m"
     },
     {
       role: "Research Assistant / 研究助理",
