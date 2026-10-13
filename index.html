@@ -248,8 +248,9 @@
   }
   // role 以 PI 開頭的放最上面一整排，其他成員排在下面
   var members = S.members || [];
-  var leads = members.filter(function (m) { return /^PI/i.test(m.role || ''); });
-  var others = members.filter(function (m) { return !/^PI/i.test(m.role || ''); });
+  function isLead(m) { return /^(PI|Principal)|主持人/i.test(m.role || ''); }
+  var leads = members.filter(isLead);
+  var others = members.filter(function (m) { return !isLead(m); });
   $('members').innerHTML = leads.map(function (m) { return memberCard(m, true); }).join('') +
     (others.length ? '<div class="team-ra">' + others.map(function (m) { return memberCard(m, false); }).join('') + '</div>' : '');
 
@@ -284,9 +285,10 @@
 
   var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   $('product-list').innerHTML = (S.products || []).map(function (p, i) {
-    var open = p.status === '開放使用';
-    var action = open && isUrl(p.url)
-      ? '<a class="btn-dark" href="' + esc(p.url) + '" target="_blank" rel="noopener">開放使用 · 開啟 ↘</a>'
+    // 有填 url 就顯示可點的黑色按鈕（文字用 status）；沒填 url 就是白色標籤
+    var open = isUrl(p.url);
+    var action = open
+      ? '<a class="btn-dark" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.status || '開啟') + ' ↘</a>'
       : '<span class="tag">' + esc(p.status) + '</span>';
     return '<div class="product' + (open ? ' open' : '') + '"><div class="letter display">' + letters[i % 26] + '</div>' +
       '<div class="main"><div class="info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.desc) + '</p></div>' +
