@@ -124,19 +124,19 @@ window.SITE = {
     {
       name: "社工AI提示詞行政小幫手",
       desc: "醫務社工常用的提示詞，選一個、填好欄位，複製到 ChatGPT、Claude 或 Gemini。",
-      status: "開放使用",
+      status: "立即使用",
       url: "https://script.google.com/macros/s/AKfycbwQar88hJTCqlCEE1PsfTGU4mP3_cDuRvC3_VS_YvoDF0TUIlbd5ZXavFG7gxtv3i0HOg/exec/exec?theme=balanced"
     },
     {
       name: "醫務社工個案紀錄skills",
       desc: "將訪談筆記或口述內容整理為結構化個案紀錄。",
-      status: "研究試用中",
+      status: "團隊開發中，敬請期待",
       url: ""
     },
     {
       name: "福利諮詢 LINE 機器人",
       desc: "民眾在 LINE 上描述遇到的困難，即可查到相關補助、申請方式與聯絡窗口。",
-      status: "研究試用中",
+      status: "團隊開發中，敬請期待",
       url: ""
     }
   ],
