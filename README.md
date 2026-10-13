@@ -61,3 +61,7 @@
 ## 共編成員
 
 要加入編輯，請先註冊 GitHub 帳號，再請管理者到 **Settings → Collaborators → Add people** 邀請。
+
+## 如果真的不會改
+
+將content.js、index.html複製起來貼給AI，請AI修改
