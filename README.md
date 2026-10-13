@@ -64,4 +64,6 @@
 
 ## 如果真的不會改
 
-將content.js、index.html複製起來貼給AI，請AI修改
+內容文字問題：將content.js複製起來貼給AI，請AI修改
+
+版面問題：將index.html複製起來貼給AI，請AI修改
