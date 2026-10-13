@@ -134,7 +134,7 @@ window.SITE = {
       url: ""
     },
     {
-      name: "福利諮詢 LINE 機器人",
+      name: "醫療福利諮詢 LINE AI聊天機器人",
       desc: "民眾在 LINE 上描述遇到的困難，即可查到相關補助、申請方式與聯絡窗口。",
       status: "團隊開發中，敬請期待",
       url: ""
