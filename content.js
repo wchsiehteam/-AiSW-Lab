@@ -28,7 +28,7 @@ window.SITE = {
   // bio：簡介，留 "" 就不會顯示
   members: [
     {
-      role: "PI / 計畫主持人",
+      role: "Principal Investigator / 計畫主持人",
       name: "謝文中",
       title: "東吳大學社會工作學系副教授",
       bio: "醫務社會工作、科技、AI 與社會工作、災難社會工作、量表建構與發展\nemail：cbm523@gmail.com",
@@ -36,7 +36,7 @@ window.SITE = {
       link: "https://web-ch.scu.edu.tw/sw/teacher_resume/3533/2016"
     },
     {
-      role: "RA / 研究助理",
+      role: "Research Assistant / 研究助理",
       name: "黃昱幃",
       title: "國立陽明交通大學衛生福利研究所 碩士生",
       bio: "",
@@ -44,7 +44,7 @@ window.SITE = {
       link: ""
     },
     {
-      role: "RA / 研究助理",
+      role: "Research Assistant / 研究助理",
       name: "王芝昀",
       title: "東吳大學社會工作學系 學士班學生",
       bio: "",
