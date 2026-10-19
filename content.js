@@ -15,7 +15,7 @@ window.SITE = {
 
   // ---------- 基本資料 ----------
   affiliation: "東吳大學社會工作學系",
-  email: "cbm523@gmail.com",
+  email: wchsiehteam@gmail.com",
   phone: "(02) 2881-9471 分機 6364",
 
   // ---------- 01 關於我們 ----------
