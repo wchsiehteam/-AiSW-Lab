@@ -15,7 +15,7 @@ window.SITE = {
 
   // ---------- 基本資料 ----------
   affiliation: "東吳大學社會工作學系",
-  email: "wchsiehteam@gmail.com",
+  email: "cbm523@gmail.com",
   phone: "(02) 2881-9471 分機 6364",
 
   // ---------- 01 關於我們 ----------
@@ -39,7 +39,7 @@ window.SITE = {
     {
       role: "Research Assistant / 研究助理",
       name: "黃昱幃",
-      title: "國立陽明交通大學衛生福利研究所 碩士生",
+      title: "現職：國立陽明交通大學衛生福利研究所 碩士生",
       bio: "",
       photo: "",
       link: ""
@@ -47,7 +47,7 @@ window.SITE = {
     {
       role: "Research Assistant / 研究助理",
       name: "王芝昀",
-      title: "東吳大學社會工作學系 學士班學生",
+      title: "現職：東吳大學社會工作學系 學士班學生",
       bio: "",
       photo: "",
       link: ""
