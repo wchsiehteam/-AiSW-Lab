@@ -31,7 +31,7 @@ window.SITE = {
     {
       role: "Principal Investigator / 計畫主持人",
       name: "謝文中",
-      title: "東吳大學社會工作學系副教授",
+      title: "現職：東吳大學社會工作學系副教授",
       bio: "醫務社會工作、科技、AI 與社會工作、災難社會工作、量表建構與發展\nemail：cbm523@gmail.com",
       photo: "123.jpg",
       link: "https://web-ch.scu.edu.tw/sw/teacher_resume/3533/2016"
