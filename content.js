@@ -58,8 +58,8 @@ window.SITE = {
   // 格式跟成員一樣；留 [] 的話，「合作夥伴」這一區就不會顯示
   // 學姐們同意後，把下面的 // 拿掉，再補上現職就會顯示（需先詢問本人意願）
   partners: [
-    // { role: "Partner / 合作夥伴", name: "（葆葳學姐全名）", title: "現職：", bio: "", photo: "", link: "" },
-    // { role: "Partner / 合作夥伴", name: "侯冠羽", title: "現職：", bio: "", photo: "", link: "" }
+     { role: "Partner / 合作夥伴", name: "許葆葳", title: "國立政治大學社會工作研究所 碩士生：", bio: "", photo: "", link: "" },
+     { role: "Partner / 合作夥伴", name: "侯冠羽", title: "現職：", bio: "", photo: "", link: "" }
   ],
   
   // ---------- 03 研究發表 ----------
