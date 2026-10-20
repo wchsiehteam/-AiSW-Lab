@@ -58,6 +58,7 @@
 
   .team { display: flex; flex-direction: column; gap: 20px; }
   .team-ra { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px; }
+  .team-sub { margin: 12px 0 0; font-size: 22px; font-weight: 900; line-height: 1.3; border-left: 8px solid var(--accent); padding-left: 12px; }
   .member { display: flex; flex-wrap: wrap; }
   .member .photo { flex: 0 0 150px; aspect-ratio: 4 / 5; background: var(--photo); border-right: 3px solid var(--ink);
     display: flex; align-items: center; justify-content: center; color: #555; font-size: 14px; overflow: hidden; }
@@ -246,13 +247,18 @@
       '<span class="title">' + esc(m.title) + '</span>' +
       (m.bio ? '<p class="bio">' + esc(m.bio) + '</p>' : '') + '</div></article>';
   }
-  // role 以 PI 開頭的放最上面一整排，其他成員排在下面
+    // 主持人放最上面，助理放「工作夥伴」，合作夥伴另列一區
   var members = S.members || [];
   function isLead(m) { return /^(PI|Principal)|主持人/i.test(m.role || ''); }
   var leads = members.filter(isLead);
   var others = members.filter(function (m) { return !isLead(m); });
-  $('members').innerHTML = leads.map(function (m) { return memberCard(m, true); }).join('') +
-    (others.length ? '<div class="team-ra">' + others.map(function (m) { return memberCard(m, false); }).join('') + '</div>' : '');
+  var partners = S.partners || [];
+  function cards(list, lead) { return list.map(function (m) { return memberCard(m, lead); }).join(''); }
+  function group(title, html) { return html ? '<h3 class="team-sub">' + title + '</h3>' + html : ''; }
+  $('members').innerHTML =
+    group('實驗室主持人', cards(leads, true)) +
+    group('工作夥伴', others.length ? '<div class="team-ra">' + cards(others, false) + '</div>' : '') +
+    group('合作夥伴', partners.length ? '<div class="team-ra">' + cards(partners, false) + '</div>' : '');
 
   var SHOW = 5;
   function pubItem(t, extra) {
