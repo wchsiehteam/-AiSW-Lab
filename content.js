@@ -141,6 +141,12 @@ window.SITE = {
       url: "https://script.google.com/macros/s/AKfycbwQar88hJTCqlCEE1PsfTGU4mP3_cDuRvC3_VS_YvoDF0TUIlbd5ZXavFG7gxtv3i0HOg/exec?theme=balanced"
     },
     {
+      name: "醫務社工體驗小遊戲",
+      desc: "3D 互動遊戲：當一天醫院的醫務社工，接照會、到床邊會談、畫家系圖、連結資源，也會遇到家屬辱罵和職場暴力。",
+      status: "立即遊玩",
+      url: "https://wchsiehteam.github.io/-AiSW-Lab/medical-social-work-day%202/"
+    },
+    {
       name: "醫務社工個案紀錄skills",
       desc: "將訪談筆記或口述內容整理為結構化個案紀錄。",
       status: "團隊開發中，敬請期待",
