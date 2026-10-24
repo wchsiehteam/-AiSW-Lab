@@ -144,7 +144,7 @@ window.SITE = {
       name: "醫務社工體驗小遊戲",
       desc: "3D 互動遊戲：當一天醫院的醫務社工，接照會、到床邊會談、畫家系圖、連結資源，也會遇到家屬辱罵和職場暴力。",
       status: "立即遊玩",
-      url: "https://wchsiehteam.github.io/-AiSW-Lab/medical-social-work-day%202/"
+      url: "https://wchsiehteam.github.io/-AiSW-Lab/medical-social-work-day%203/"
     },
     {
       name: "醫務社工個案紀錄skills",
