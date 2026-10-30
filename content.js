@@ -20,7 +20,7 @@ window.SITE = {
 
   // ---------- 01 關於我們 ----------
   // 想換行的地方打 \n
-  about: "AiSW Lab 由東吳大學社會工作學系謝文中老師主持，目前執行國科會計畫「口袋裡的醫務社工師」。\n我們開發社工用得上的 AI 工具，並和醫院社工室一起在實務現場檢驗成效。",
+  about: "Ai社會工作實驗室（AiSW Lab）由東吳大學社會工作學系謝文中老師主持。團隊與社工專業團體和實務工作者合作研發社工與服務對象能應用的AI工具，並導入臨床及實務現場實施驗證。",
 
   // ---------- 02 成員介紹 ----------
   // photo：照片上傳到最外層後，填 "檔名.jpg"；沒有照片就留 ""
@@ -32,7 +32,7 @@ window.SITE = {
       role: "Principal Investigator / 計畫主持人",
       name: "謝文中",
       title: "現職：東吳大學社會工作學系副教授",
-      bio: "醫務社會工作、科技、AI 與社會工作、災難社會工作、量表建構與發展\nemail：cbm523@gmail.com",
+      bio: "醫務社會工作、AI、科技與社會工作、災難社會工作、量表建構與發展\nemail：cbm523@gmail.com",
       photo: "photo.jpg",
       link: "https://web-ch.scu.edu.tw/sw/teacher_resume/3533/2016"
     },
@@ -58,7 +58,7 @@ window.SITE = {
   // 格式跟成員一樣；留 [] 的話，「合作夥伴」這一區就不會顯示
   partners: [
     { role: "Partner / 合作夥伴", name: "許葆葳", title: "現職：國立政治大學社會工作研究所 碩士生", bio: "", photo: "", link: "" },
-    { role: "Partner / 合作夥伴", name: "侯冠羽", title: "現職：", bio: "", photo: "", link: "" }
+    { role: "Partner / 合作夥伴", name: "侯冠羽", title: "現職：身心障礙領域社工師", bio: "", photo: "", link: "" }
   ],
   
   // ---------- 03 研究發表 ----------
@@ -136,26 +136,26 @@ window.SITE = {
   products: [
     {
       name: "社工AI提示詞行政小幫手",
-      desc: "醫務社工常用的提示詞，選一個、填好欄位，複製到 ChatGPT、Claude 或 Gemini。",
-      status: "立即使用",
-      url: "https://script.google.com/macros/s/AKfycbwQar88hJTCqlCEE1PsfTGU4mP3_cDuRvC3_VS_YvoDF0TUIlbd5ZXavFG7gxtv3i0HOg/exec?theme=balanced"
+      desc: "醫務社工臨床工作常用的AI提示詞資料庫，可依實務情境使用、個別化編修與攜帶到 ChatGPT、Claude 或 Gemini生成資料。",
+      status: "請與實驗室團隊聯繫",
+      url: ""
     },
     {
       name: "醫務社工體驗小遊戲",
-      desc: "互動遊戲：當一天醫院的醫務社工，接照會、會談、畫家系圖、連結資源、寫個案記錄與處遇，也會遇到家屬辱罵、職場暴力與性騷擾。",
-      status: "立即遊玩",
-      url: "https://wchsiehteam.github.io/-AiSW-Lab/medical-social-work-day%203/"
+      desc: "您可以當一天醫院的醫務社工，從接照會、會談、畫家系圖、連結資源、寫個案記錄與處遇，也會遇到行政工作、醫病衝突或醫院突發事件挑戰。",
+      status: "請與實驗室團隊聯繫",
+      url: ""
     },
     {
-      name: "醫務社工個案紀錄skills",
-      desc: "將訪談筆記或口述內容整理為結構化個案紀錄。",
-      status: "團隊開發中，敬請期待",
+      name: "醫務社工個案紀錄系統",
+      desc: "將個案會談筆記或記錄摘要，使用手機APP語音輸入，整理為結構化個案紀錄並完成家系圖。",
+      status: "請與實驗室團隊聯繫",
       url: ""
     },
     {
       name: "醫療福利諮詢 LINE AI聊天機器人",
-      desc: "民眾在 LINE 上描述遇到的困難，即可查到相關補助、申請方式與聯絡窗口。",
-      status: "團隊開發中，敬請期待",
+      desc: "民眾在 LINE 上描述遇到健康或疾病相關醫療福利困難，可查到相關補助、申請方式與聯絡窗口。",
+      status: "請與實驗室團隊聯繫",
       url: ""
     }
   ],
