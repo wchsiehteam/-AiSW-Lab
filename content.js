@@ -70,6 +70,7 @@ window.SITE = {
       group: "期刊論文",
       en: "JOURNAL ARTICLES",
       items: [
+        "張凱淳、謝文中（通訊作者）（2026）。新冠肺炎下無家者交織性經驗與生存策略之研究。台灣公共衛生雜誌，45（5），404-422。（TSSCI期刊）"
         "劉秋伶、謝文中（通訊作者）（2024）。疫情時，誰來值班？我國新冠肺炎期間醫院志工持續服務影響因素研究。台灣公共衛生雜誌，43（5），488-500。（TSSCI期刊）",
         "謝文中、陳武宗、莊東憲、洪宏德、林汶靜（2023）。一場心理健康風暴？：新冠肺炎三級警戒下醫務社工心理情緒困擾之相關影響因素研究。臺大社會工作學刊，特刊，83-140。（TSSCI期刊）",
         "Hsieh, W. C., Chuang, T. H., & Wen, H. H. (2023). Taiwan's Medical Social Work Development and the Impact of Social Work Regulation. Research on Social Work Practice, 33(1), 41-51. (SSCI journal, IF: 1.984, 22/43, Ranking: 51.16%)",
